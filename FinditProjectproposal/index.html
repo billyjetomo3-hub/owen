@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FindIt — Campus Lost &amp; Found Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="viewport-wrapper">
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="app-shell" id="appShell">
+      <!-- ====================================================================
+           COLUMN 1: LEFT SIDEBAR
+           ==================================================================== -->
+      <aside class="left-sidebar" id="leftSidebar">
+        <div class="brand-header">
+          <div class="brand-logo-box" aria-hidden="true">
+            <!-- Combined Location Pin + Search Magnifier SVG -->
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 21s-6-5.33-6-10a6 6 0 1 1 12 0c0 4.67-6 10-6 10z"></path>
+              <circle cx="11.5" cy="10.5" r="2.5"></circle>
+              <line x1="13.4" y1="12.4" x2="15.2" y2="14.2"></line>
+            </svg>
+          </div>
+          <div class="brand-text">
+            <h1>FindIt</h1>
+            <span>Campus Lost &amp; Found</span>
+          </div>
+        </div>
+
+        <!-- Profile Section with Role Switcher Dropdown -->
+        <div class="profile-wrapper" id="profileWrapper">
+          <button class="profile-trigger" id="profileTrigger" type="button" aria-expanded="false">
+            <img class="profile-avatar" id="sidebarAvatar" src="" alt="Profile" />
+            <div class="profile-meta">
+              <div class="profile-name" id="sidebarUserName">Mark Averous</div>
+              <div class="profile-role" id="sidebarUserRole">Student</div>
+            </div>
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#6B7280" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <div class="profile-dropdown" id="profileDropdown">
+            <div class="dropdown-label">Switch Active Role</div>
+            <button class="dropdown-item" id="switchStudentBtn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Mark Averous (Student)
+            </button>
+            <button class="dropdown-item" id="switchAdminBtn" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Dr. Elena Vance (Admin)
+            </button>
+            <div class="dropdown-divider"></div>
+            <button class="dropdown-item" data-nav="account" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              Account &amp; Profile
+            </button>
+            <button class="dropdown-item" data-nav="settings" type="button">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="4" y1="21" x2="4" y2="14"/><line x1="4" y1="10" x2="4" y2="3"/><line x1="12" y1="21" x2="12" y2="12"/><line x1="12" y1="8" x2="12" y2="3"/><line x1="20" y1="21" x2="20" y2="16"/><line x1="20" y1="12" x2="20" y2="3"/></svg>
+              System Settings
+            </button>
+          </div>
+        </div>
+
+        <!-- Dynamic Role-Based Navigation -->
+        <nav class="sidebar-nav" id="sidebarNav" aria-label="Primary Navigation"></nav>
+      </aside>
+
+      <!-- ====================================================================
+           COLUMN 2: MAIN WORKSPACE
+           ==================================================================== -->
+      <main class="main-workspace">
+        <header class="main-header">
+          <div class="header-left">
+            <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Open Navigation">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            </button>
+            <div class="header-title-block">
+              <h2 id="pageHeaderTitle">Dashboard</h2>
+              <div class="header-subtitle">
+                <span class="date-chip" id="headerDateBadge"></span>
+                <span id="pageHeaderGreeting">Welcome back! Here's what's happening in your campus community.</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="header-actions">
+            <button class="role-pill-switch" id="quickRoleToggle" type="button" title="Switch between Student and Administrator views">
+              <span class="role-dot" id="quickRoleDot"></span>
+              <span id="quickRoleLabel">Student View</span>
+            </button>
+
+            <button class="icon-btn" id="headerSearchBtn" type="button" title="Search Campus Items">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+
+            <button class="icon-btn" id="headerHelpBtn" type="button" title="Help & Campus Support">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+            </button>
+
+            <button class="icon-btn" id="headerNotifBtn" type="button" title="Notifications">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="unread-dot" id="headerUnreadDot" style="display:none;"></span>
+            </button>
+
+            <!-- Notifications Popover -->
+            <div class="notif-popover" id="notifPopover">
+              <div class="notif-popover-header">
+                <span>Notifications</span>
+                <button class="card-link" id="popoverMarkAllRead" type="button">Mark all read</button>
+              </div>
+              <div class="notif-popover-list" id="notifPopoverList"></div>
+              <div style="padding:8px 14px; text-align:center; background:#FAFAFC;">
+                <button class="card-link" data-nav="notifications" type="button">View all notifications</button>
+              </div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Dynamic SPA Page View Container -->
+        <div id="mainViewContainer" style="display:flex; flex-direction:column; gap:16px;"></div>
+      </main>
+
+      <!-- ====================================================================
+           COLUMN 3: RIGHT INFORMATION PANEL
+           ==================================================================== -->
+      <aside class="right-panel" id="rightPanel">
+        <!-- PANEL 1: CAMPUS CALENDAR -->
+        <section>
+          <div class="panel-section-title">
+            <span>Campus Calendar</span>
+            <span style="font-size:10.5px; font-weight:500; color:var(--primary-blue);" id="selectedDateText">Today</span>
+          </div>
+          <div class="calendar-box">
+            <div class="cal-header">
+              <span class="cal-month-label" id="calMonthLabel">November 2026</span>
+              <div class="cal-nav-btns">
+                <button class="cal-nav-btn" id="calPrevBtn" type="button" aria-label="Previous Month">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="15 18 9 12 15 6"/></svg>
+                </button>
+                <button class="cal-nav-btn" id="calNextBtn" type="button" aria-label="Next Month">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polyline points="9 18 15 12 9 6"/></svg>
+                </button>
+              </div>
+            </div>
+            <div class="cal-weekdays">
+              <span>Su</span><span>Mo</span><span>Tu</span><span>We</span><span>Th</span><span>Fr</span><span>Sa</span>
+            </div>
+            <div class="cal-days-grid" id="calDaysGrid"></div>
+          </div>
+        </section>
+
+        <!-- PANEL 2: UPCOMING SCHEDULE -->
+        <section>
+          <div class="panel-section-title">
+            <span>Upcoming Schedule</span>
+            <div style="display:flex; align-items:center; gap:6px;">
+              <button class="card-link" id="clearDateFilterBtn" type="button" style="display:none; font-size:10.5px;">All Dates</button>
+              <button class="btn btn-primary btn-sm" id="addScheduleBtn" type="button" style="display:none; padding:2px 7px; font-size:10.5px;">+ Add</button>
+            </div>
+          </div>
+          <div class="schedule-list" id="upcomingScheduleList"></div>
+        </section>
+
+        <!-- PANEL 3: RECENT ACTIVITIES TIMELINE -->
+        <section>
+          <div class="panel-section-title">
+            <span>Recent Activities</span>
+            <span style="font-size:10px; color:var(--text-muted); font-weight:500;">Live Feed</span>
+          </div>
+          <div class="timeline-list" id="rightTimelineList"></div>
+        </section>
+
+        <!-- RIGHT PANEL FOOTER -->
+        <footer class="right-footer">
+          <div class="right-footer-title">FindIt Campus Community</div>
+          <div class="right-footer-links">
+            <button type="button" data-info-modal="privacy">Privacy Policy</button>
+            <button type="button" data-info-modal="guidelines">Guidelines</button>
+            <button type="button" data-info-modal="help">Help Center</button>
+            <button type="button" data-info-modal="contact">Contact</button>
+          </div>
+          <div>&copy; 2026 FindIt Campus Lost &amp; Found Office. All rights reserved.</div>
+        </footer>
+      </aside>
+    </div>
+  </div>
+
+  <!-- Reusable Interactive Modal Dialog -->
+  <div class="modal-backdrop" id="appModalBackdrop">
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="appModalTitle">
+      <div class="modal-header">
+        <h3 class="modal-title" id="appModalTitle">Modal Title</h3>
+        <button class="icon-btn" id="appModalCloseBtn" type="button" style="width:28px; height:28px;" aria-label="Close">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body" id="appModalBody"></div>
+      <div class="modal-footer" id="appModalFooter"></div>
+    </div>
+  </div>
+
+  <!-- Toast Stack -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
